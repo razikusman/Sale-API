@@ -17,12 +17,16 @@ namespace sale_API.Models
         {
         }
 
+        public DbSet<Customer> Customers { get; set; } //customer model
+        public DbSet<Invoice> Invoices { get; set; } //Invice model
+        public DbSet<Item> Items { get; set; } //Item model
+        public DbSet<Order> Ordders { get; set; } //Order model
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=usmanspc;Initial Catalog=SalesDB;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Name = SalesDB");
             }
         }
 
