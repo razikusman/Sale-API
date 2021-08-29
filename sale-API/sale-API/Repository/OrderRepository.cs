@@ -1,4 +1,5 @@
-﻿using sale_API.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using sale_API.Models;
 using sale_API.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,65 @@ namespace sale_API.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        public Task<List<Order>> DeleteOrderAsync(int id)
+        private readonly SalesDBContext _context;
+
+        public OrderRepository(SalesDBContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<Order>> GetOrdersAsync()
+        public async Task<Order> DeleteOrderAsync(int id)
         {
-            throw new NotImplementedException();
+            var order = await _context.Ordders.FindAsync(id);
+            if (order == null)
+            {
+                return null;
+            }
+
+            _context.Ordders.Remove(order);
+            await _context.SaveChangesAsync();
+
+            return order;
         }
 
-        public Task<List<Order>> GetOrdersByIDAsync(int id)
+        public async Task<List<Order>> GetOrdersAsync()
         {
-            throw new NotImplementedException();
+            var orders = await _context.Ordders.ToListAsync();
+            return orders;
         }
 
-        public Task<List<Order>> PostOrderAsync(Order order)
+        public async Task<Order> GetOrdersByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var order = await _context.Ordders
+                                             .Where(ord => ord.OrderID == id)
+                                             .FirstOrDefaultAsync();
+            if (order == null)
+            {
+                return null;
+            }
+
+            return order;
         }
 
-        public Task<List<Order>> PutOrderAsync(int id, Order order)
+        public async Task<Order> PostOrderAsync(Order order)
         {
-            throw new NotImplementedException();
+            _context.Ordders.Add(order);
+            await _context.SaveChangesAsync();
+
+            return order;
+        }
+
+        public async Task<Order> PutOrderAsync(int id, Order order)
+        {
+            _context.Entry(order).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return order;
+        }
+
+        private bool ItemExists(int id)
+        {
+            return _context.Items.Any(e => e.ItemID == id);
         }
     }
 }

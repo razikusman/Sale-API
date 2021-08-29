@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using sale_API.Models;
+using sale_API.Repository.Interfaces;
 
 namespace sale_API.Controllers
 {
@@ -13,32 +14,25 @@ namespace sale_API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly SalesDBContext _context;
+        private readonly IItemRepository _item;
 
-        public ItemsController(SalesDBContext context)
+        public ItemsController(IItemRepository item)
         {
-            _context = context;
+            _item = item;
         }
 
         // GET: api/Items
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return Ok(await _item.GetItemsAsync());
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            return item;
+            return Ok(await _item.GetItemsByIDAsync(id));
         }
 
         // PUT: api/Items/5
@@ -52,25 +46,7 @@ namespace sale_API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(item).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(await _item.PutItemAsync(id, item));
         }
 
         // POST: api/Items
@@ -79,31 +55,15 @@ namespace sale_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetItem", new { id = item.ItemID }, item);
+            return Ok(await _item.PostItemAsync(item));
         }
 
         // DELETE: api/Items/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-
-            return item;
+            return Ok(await _item.DeleteItemAsync(id));
         }
 
-        private bool ItemExists(int id)
-        {
-            return _context.Items.Any(e => e.ItemID == id);
-        }
     }
 }
