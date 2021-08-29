@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace sale_API.Repository.Interfaces
 {
-    interface ICustomerRepository
+    public interface ICustomerRepository 
     {
         Task<List<Customer>> GetCustomersAsync();
-        Task<List<Customer>> GetCustomersByIDAsync(int id);
-        Task<List<Customer>> PutCustomerAsync(int id , Customer customer);
-        Task<List<Customer>> PostCustomerAsync(Customer customer);
-        Task<List<Customer>> DeleteCustomerAsync(int id);
+        Task<Customer> GetCustomersByIDAsync(int id);
+        Task<Customer> PutCustomerAsync(int id , Customer customer);
+        Task<Customer> PostCustomerAsync(Customer customer);
+        Task<Customer> DeleteCustomerAsync(int id);
     }
 }

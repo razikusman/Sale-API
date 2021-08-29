@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using sale_API.Models;
+using sale_API.Repository;
+using sale_API.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,12 @@ namespace sale_API
             //DefineDBContext conectionstring
             services.AddDbContext<SalesDBContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("SalesDB")));
+
+            //add repository and Irepository
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
