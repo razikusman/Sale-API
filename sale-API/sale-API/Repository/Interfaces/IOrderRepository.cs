@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sale_API.Repository.Interfaces
 {
-    interface IOrderRepository
+    public interface IOrderRepository
     {
         Task<List<Order>> GetOrdersAsync();
         Task<List<Order>> GetOrdersByIDAsync(int id);

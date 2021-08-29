@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sale_API.Repository.Interfaces
 {
-    interface IItemRepository
+    public interface IItemRepository
     {
         Task<List<Item>> GetItemsAsync();
         Task<List<Item>> GetItemsByIDAsync(int id);

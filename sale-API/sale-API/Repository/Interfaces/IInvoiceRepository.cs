@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace sale_API.Repository.Interfaces
 {
-    interface IInvoiceRepository
+    public interface IInvoiceRepository
     {
         Task<List<Invoice>> GetInvoicesAsync();
-        Task<List<Invoice>> GetInvoicesByIDAsync(int id);
-        Task<List<Invoice>> PutInvoiceAsync(int id, Invoice invoice);
-        Task<List<Invoice>> PostInvoiceAsync(Invoice invoice);
-        Task<List<Invoice>> DeleteInvoiceAsync(int id);
+        Task<Invoice> GetInvoicesByIDAsync(int id);
+        Task<Invoice> PutInvoiceAsync(int id, Invoice invoice);
+        Task<Invoice> PostInvoiceAsync(Invoice invoice);
+        Task<Invoice> DeleteInvoiceAsync(int id);
     }
 }

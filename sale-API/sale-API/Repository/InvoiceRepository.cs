@@ -1,4 +1,5 @@
-﻿using sale_API.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using sale_API.Models;
 using sale_API.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,60 @@ namespace sale_API.Repository
 {
     public class InvoiceRepository : IInvoiceRepository
     {
-        public Task<List<Invoice>> DeleteInvoiceAsync(int id)
+        private readonly SalesDBContext _context;
+
+        public InvoiceRepository(SalesDBContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<Invoice>> GetInvoicesAsync()
+        public async Task<Invoice> DeleteInvoiceAsync(int id)
         {
-            throw new NotImplementedException();
+            var invoice = await _context.Invoices.FindAsync(id);
+            if (invoice == null)
+            {
+                return null;
+            }
+
+            _context.Invoices.Remove(invoice);
+            await _context.SaveChangesAsync();
+
+            return invoice;
         }
 
-        public Task<List<Invoice>> GetInvoicesByIDAsync(int id)
+        public async Task<List<Invoice>> GetInvoicesAsync()
         {
-            throw new NotImplementedException();
+            var invoices = await _context.Invoices.ToListAsync();
+            return invoices;
         }
 
-        public Task<List<Invoice>> PostInvoiceAsync(Invoice invoice)
+        public async Task<Invoice> GetInvoicesByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var invoice = await _context.Invoices
+                                             .Where(inv => inv.InvoiceID == id)
+                                             .FirstOrDefaultAsync();
+            if (invoice == null)
+            {
+                return null;
+            }
+
+            return invoice;
         }
 
-        public Task<List<Invoice>> PutInvoiceAsync(int id, Invoice invoice)
+        public async Task<Invoice> PostInvoiceAsync(Invoice invoice)
         {
-            throw new NotImplementedException();
+            _context.Invoices.Add(invoice);
+            await _context.SaveChangesAsync();
+
+            return invoice;
+        }
+
+        public async Task<Invoice> PutInvoiceAsync(int id, Invoice invoice)
+        {
+            _context.Entry(invoice).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return invoice;
         }
     }
 }
