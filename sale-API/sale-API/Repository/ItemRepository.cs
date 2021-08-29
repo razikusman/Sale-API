@@ -1,4 +1,5 @@
-﻿using sale_API.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using sale_API.Models;
 using sale_API.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,60 @@ namespace sale_API.Repository
 {
     public class ItemRepository : IItemRepository
     {
-        public Task<List<Item>> DeleteItemAsync(int id)
+        private readonly SalesDBContext _context;
+
+        public ItemRepository(SalesDBContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<Item>> GetItemsAsync()
+        public async Task<Item> DeleteItemAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
+            {
+                return null;
+            }
+
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+
+            return item;
         }
 
-        public Task<List<Item>> GetItemsByIDAsync(int id)
+        public async Task<List<Item>> GetItemsAsync()
         {
-            throw new NotImplementedException();
+            var items = await _context.Items.ToListAsync();
+            return items;
         }
 
-        public Task<List<Item>> PostItemAsync(Item item)
+        public async Task<Item> GetItemsByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await _context.Items
+                                             .Where(itm => itm.ItemID == id)
+                                             .FirstOrDefaultAsync();
+            if (item == null)
+            {
+                return null;
+            }
+
+            return item;
         }
 
-        public Task<List<Item>> PutItemAsync(int id, Item item)
+        public async Task<Item> PostItemAsync(Item item)
         {
-            throw new NotImplementedException();
+            _context.Items.Add(item);
+            await _context.SaveChangesAsync();
+
+            return item;
+        }
+
+        public async Task<Item> PutItemAsync(int id, Item item)
+        {
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return item;
         }
     }
 }

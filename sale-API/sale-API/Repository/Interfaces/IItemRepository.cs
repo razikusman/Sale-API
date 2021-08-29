@@ -9,9 +9,9 @@ namespace sale_API.Repository.Interfaces
     public interface IItemRepository
     {
         Task<List<Item>> GetItemsAsync();
-        Task<List<Item>> GetItemsByIDAsync(int id);
-        Task<List<Item>> PutItemAsync(int id, Item item);
-        Task<List<Item>> PostItemAsync(Item item);
-        Task<List<Item>> DeleteItemAsync(int id);
+        Task<Item> GetItemsByIDAsync(int id);
+        Task<Item> PutItemAsync(int id, Item item);
+        Task<Item> PostItemAsync(Item item);
+        Task<Item> DeleteItemAsync(int id);
     }
 }
