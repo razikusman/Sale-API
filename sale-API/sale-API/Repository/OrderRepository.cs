@@ -60,7 +60,7 @@ namespace sale_API.Repository
             int excl, tax, incl;
 
             excl = order.O_qty * item.I_Price;
-            tax = excl * item.I_Tax;
+            tax = excl * item.I_Tax/100;
             incl = excl + tax;
 
             //asigning
@@ -88,7 +88,7 @@ namespace sale_API.Repository
                 int excl, tax, incl;
 
                 excl = order.O_qty * item.I_Price;
-                tax = excl * item.I_Tax;
+                tax = excl * item.I_Tax/100;
                 incl = excl + tax;
 
                 //asigning

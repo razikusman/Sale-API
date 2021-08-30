@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using sale_API.Handler;
 using sale_API.Models;
 using sale_API.Repository;
 using sale_API.Repository.Interfaces;
@@ -37,6 +39,10 @@ namespace sale_API
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+            //authentication Endpoint
+            services.AddAuthentication("Auth")
+                    .AddScheme <AuthenticationSchemeOptions, AuthHandler>("Auth", null);
+
             //DefineDBContext conectionstring
             services.AddDbContext<SalesDBContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("SalesDB")));
@@ -59,6 +65,9 @@ namespace sale_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //authorizing users
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
