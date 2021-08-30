@@ -27,6 +27,22 @@ namespace sale_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Items",
+                columns: table => new
+                {
+                    ItemID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    I_Code = table.Column<string>(nullable: true),
+                    I_Description = table.Column<string>(nullable: true),
+                    I_Note = table.Column<string>(nullable: true),
+                    I_Price = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Items", x => x.ItemID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Invoices",
                 columns: table => new
                 {
@@ -55,37 +71,19 @@ namespace sale_API.Migrations
                 {
                     OrderID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    O_date = table.Column<DateTime>(nullable: false),
-                    CustomerID = table.Column<int>(nullable: false)
+                    ItemID = table.Column<int>(nullable: false),
+                    O_qty = table.Column<int>(nullable: false),
+                    O_Tax = table.Column<int>(nullable: false),
+                    O_ExclAmount = table.Column<int>(nullable: false),
+                    O_TaxAmount = table.Column<int>(nullable: false),
+                    O_InclAmount = table.Column<int>(nullable: false),
+                    InvoiceID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ordders", x => x.OrderID);
                     table.ForeignKey(
-                        name: "FK_Ordders_Customers_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Items",
-                columns: table => new
-                {
-                    ItemID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    I_Code = table.Column<string>(nullable: true),
-                    I_Description = table.Column<string>(nullable: true),
-                    I_Note = table.Column<string>(nullable: true),
-                    I_Price = table.Column<int>(nullable: false),
-                    InvoiceID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Items", x => x.ItemID);
-                    table.ForeignKey(
-                        name: "FK_Items_Invoices_InvoiceID",
+                        name: "FK_Ordders_Invoices_InvoiceID",
                         column: x => x.InvoiceID,
                         principalTable: "Invoices",
                         principalColumn: "InvoiceID",
@@ -98,14 +96,9 @@ namespace sale_API.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_InvoiceID",
-                table: "Items",
-                column: "InvoiceID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ordders_CustomerID",
+                name: "IX_Ordders_InvoiceID",
                 table: "Ordders",
-                column: "CustomerID");
+                column: "InvoiceID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

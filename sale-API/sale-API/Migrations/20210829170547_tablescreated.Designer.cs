@@ -10,8 +10,8 @@ using sale_API.Models;
 namespace sale_API.Migrations
 {
     [DbContext(typeof(SalesDBContext))]
-    [Migration("20210829110022_addeditemstablecolumns")]
-    partial class addeditemstablecolumns
+    [Migration("20210829170547_tablescreated")]
+    partial class tablescreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,33 +97,13 @@ namespace sale_API.Migrations
                     b.Property<string>("I_Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("I_ExclAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("I_InclAmount")
-                        .HasColumnType("int");
-
                     b.Property<string>("I_Note")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("I_Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("I_Tax")
-                        .HasColumnType("int");
-
-                    b.Property<int>("I_TaxAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("I_qty")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InvoiceID")
-                        .HasColumnType("int");
-
                     b.HasKey("ItemID");
-
-                    b.HasIndex("InvoiceID");
 
                     b.ToTable("Items");
                 });
@@ -135,15 +115,30 @@ namespace sale_API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("InvoiceID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("O_date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ItemID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("O_ExclAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("O_InclAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("O_Tax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("O_TaxAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("O_qty")
+                        .HasColumnType("int");
 
                     b.HasKey("OrderID");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("InvoiceID");
 
                     b.ToTable("Ordders");
                 });
@@ -157,20 +152,11 @@ namespace sale_API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("sale_API.Models.Item", b =>
-                {
-                    b.HasOne("sale_API.Models.Invoice", "Invoice")
-                        .WithMany("Items")
-                        .HasForeignKey("InvoiceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("sale_API.Models.Order", b =>
                 {
-                    b.HasOne("sale_API.Models.Customer", "Customer")
+                    b.HasOne("sale_API.Models.Invoice", "Invoice")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerID")
+                        .HasForeignKey("InvoiceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

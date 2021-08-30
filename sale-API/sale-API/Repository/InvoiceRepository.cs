@@ -33,15 +33,18 @@ namespace sale_API.Repository
 
         public async Task<List<Invoice>> GetInvoicesAsync()
         {
-            var invoices = await _context.Invoices.ToListAsync();
+            var invoices = await _context.Invoices
+                                                .Include(inv => inv.Orders)
+                                                .ToListAsync();
             return invoices;
         }
 
         public async Task<Invoice> GetInvoicesByIDAsync(int id)
         {
             var invoice = await _context.Invoices
-                                             .Where(inv => inv.InvoiceID == id)
-                                             .FirstOrDefaultAsync();
+                                                 .Include(inv => inv.Orders)
+                                                 .Where(inv => inv.InvoiceID == id)
+                                                 .FirstOrDefaultAsync();
             if (invoice == null)
             {
                 return null;

@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210828161546_tablescreated.cs" />
+    <Compile Remove="Migrations\20210828161546_tablescreated.Designer.cs" />
+    <Compile Remove="Migrations\20210829110022_addeditemstablecolumns.cs" />
+    <Compile Remove="Migrations\20210829110022_addeditemstablecolumns.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bricelam.EntityFrameworkCore.Pluralizer" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -52,6 +52,23 @@ namespace sale_API.Repository
 
         public async Task<Order> PostOrderAsync(Order order)
         {
+            var item = await _context.Items
+                                        .Where(itm => itm.ItemID == order.ItemID)
+                                        .FirstOrDefaultAsync();
+
+            //calculation
+            int excl, tax, incl;
+
+            excl = order.O_qty * item.I_Price;
+            tax = excl * item.I_Tax;
+            incl = excl + tax;
+
+            //asigning
+            order.O_ExclAmount = excl;
+            order.O_TaxAmount = tax;
+            order.O_InclAmount = incl;
+
+            //create order
             _context.Ordders.Add(order);
             await _context.SaveChangesAsync();
 
@@ -60,11 +77,40 @@ namespace sale_API.Repository
 
         public async Task<Order> PutOrderAsync(int id, Order order)
         {
+            
+            if(_context.Entry(order).State != EntityState.Modified)
+            {
+                var item = await _context.Items
+                                        .Where(itm => itm.ItemID == order.ItemID)
+                                        .FirstOrDefaultAsync();
+
+                //calculation
+                int excl, tax, incl;
+
+                excl = order.O_qty * item.I_Price;
+                tax = excl * item.I_Tax;
+                incl = excl + tax;
+
+                //asigning
+                order.O_ExclAmount = excl;
+                order.O_TaxAmount = tax;
+                order.O_InclAmount = incl;
+
+                _context.Entry(order).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+
             _context.Entry(order).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return order;
         }
+
+        //calculating order
+        /*public async Task<Order> MakeOrder(Order order) {
+
+            return order;
+        }*/
 
         private bool ItemExists(int id)
         {

@@ -8,11 +8,15 @@ namespace sale_API.Models
     public class Order
     {
         public int OrderID { get; set; }
-        public DateTime O_date { get; set; }
+        public int ItemID { get; set; }
+        public int O_qty { get; set; }
+        public int O_ExclAmount { get; set; }
+        public int O_TaxAmount { get; set; }
+        public int O_InclAmount { get; set; }
 
 
-        //foriegn key Customer
-        public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
+        //foreign key invoice
+        public int InvoiceID { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

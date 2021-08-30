@@ -34,8 +34,8 @@ namespace sale_API.Repository
         public async Task<List<Customer>> GetCustomersAsync()
         {
             var customers = await _context.Customers
-                                                    .Include(cus => cus.Orders)
                                                     .Include(cus => cus.invoices)
+                                                        .ThenInclude(inv => inv.Orders)
                                                     .ToListAsync();
             return customers;
 
@@ -44,10 +44,10 @@ namespace sale_API.Repository
         public async Task<Customer> GetCustomersByIDAsync(int id)
         {
             var customers = await _context.Customers
-                                             .Include(cus => cus.Orders)
-                                             .Include(cus => cus.invoices)
-                                             .Where(cus => cus.CustomerID == id)
-                                             .FirstOrDefaultAsync();
+                                                .Include(cus => cus.invoices)
+                                                    .ThenInclude(inv => inv.Orders)
+                                                .Where(cus => cus.CustomerID == id)
+                                                .FirstOrDefaultAsync();
             if (customers == null)
             {
                 return null;

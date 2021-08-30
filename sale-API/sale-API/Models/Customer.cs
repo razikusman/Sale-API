@@ -19,7 +19,6 @@ namespace sale_API.Models
         //invices
         public virtual List<Invoice> invoices { get; set; }
 
-        //orders
-        public virtual List<Order> Orders { get; set; }
+        
     }
 }

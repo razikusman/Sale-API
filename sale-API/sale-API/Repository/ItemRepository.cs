@@ -52,20 +52,6 @@ namespace sale_API.Repository
 
         public async Task<Item> PostItemAsync(Item item)
         {
-            Item item1 = new Item();
-
-            //calculation
-            int excl, tax, incl;
-
-            excl = item1.I_qty * item1.I_Price;
-            tax = excl * item1.I_Tax;
-            incl = excl + tax;
-
-            //asigning
-            item1.I_ExclAmount = excl;
-            item1.I_Tax = tax;
-            item1.I_InclAmount = incl;
-
             //create item
             _context.Items.Add(item);
             await _context.SaveChangesAsync();

@@ -13,8 +13,9 @@ namespace sale_API.Models
         public int I_RefNum { get; set; }
         public String I_Note { get; set; }
 
-        //items
-        public virtual List<Item> Items { get; set; }
+        
+        //orders
+        public virtual List<Order> Orders { get; set; }
 
         //foriegn key Customer
         public int CustomerID { get; set; }
