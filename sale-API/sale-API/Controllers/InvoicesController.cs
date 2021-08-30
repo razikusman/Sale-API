@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using sale_API.Repository.Interfaces;
 
 namespace sale_API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class InvoicesController : ControllerBase
@@ -41,11 +43,6 @@ namespace sale_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInvoice(int id, Invoice invoice)
         {
-            if (id != invoice.InvoiceID)
-            {
-                return BadRequest();
-            }
-
             return Ok(await _invoice.PutInvoiceAsync(id, invoice));
         }
 

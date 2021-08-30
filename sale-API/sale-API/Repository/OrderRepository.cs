@@ -19,48 +19,130 @@ namespace sale_API.Repository
 
         public async Task<Order> DeleteOrderAsync(int id)
         {
-            var order = await _context.Ordders.FindAsync(id);
-            if (order == null)
+            try
             {
-                return null;
+                var order = await _context.Ordders.FindAsync(id);
+                if (order == null)
+                {
+                    throw new Exception("Order Not Found");
+                }
+
+                _context.Ordders.Remove(order);
+                await _context.SaveChangesAsync();
+
+                return order;
             }
+            catch (Exception)
+            {
 
-            _context.Ordders.Remove(order);
-            await _context.SaveChangesAsync();
-
-            return order;
+                throw new Exception();
+            }
+            
         }
 
         public async Task<List<Order>> GetOrdersAsync()
         {
-            var orders = await _context.Ordders.ToListAsync();
-            return orders;
+            try
+            {
+                var orders = await _context.Ordders.ToListAsync();
+                return orders;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Order> GetOrdersByIDAsync(int id)
         {
-            var order = await _context.Ordders
+            try
+            {
+                var order = await _context.Ordders
                                              .Where(ord => ord.OrderID == id)
                                              .FirstOrDefaultAsync();
-            if (order == null)
-            {
-                return null;
-            }
+                if (order == null)
+                {
+                    return null;
+                }
 
-            return order;
+                return order;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Order> PostOrderAsync(Order order)
         {
+            try
+            {
+                //get the calculated orede
+                order = await this.MakeOrder(order);
+
+                //create order
+                _context.Ordders.Add(order);
+                await _context.SaveChangesAsync();
+
+                return order;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
+        }
+
+        public async Task<Order> PutOrderAsync(int id, Order order)
+        {
+            try
+            {
+                if (id != order.OrderID)
+                {
+                    throw new Exception();
+                }
+
+                if (_context.Entry(order).State != EntityState.Modified)
+                {
+                    //get the calculated orede
+                    order = await this.MakeOrder(order);
+
+                    _context.Entry(order).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+
+                _context.Entry(order).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return order;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception ();
+            }
+
+           
+        }
+
+        //calculating order
+        public async Task<Order> MakeOrder(Order order) 
+        {
+
             var item = await _context.Items
-                                        .Where(itm => itm.ItemID == order.ItemID)
-                                        .FirstOrDefaultAsync();
+                                    .Where(itm => itm.ItemID == order.ItemID)
+                                    .FirstOrDefaultAsync();
 
             //calculation
             int excl, tax, incl;
 
             excl = order.O_qty * item.I_Price;
-            tax = excl * item.I_Tax/100;
+            tax = excl * item.I_Tax / 100;
             incl = excl + tax;
 
             //asigning
@@ -68,49 +150,8 @@ namespace sale_API.Repository
             order.O_TaxAmount = tax;
             order.O_InclAmount = incl;
 
-            //create order
-            _context.Ordders.Add(order);
-            await _context.SaveChangesAsync();
-
             return order;
         }
-
-        public async Task<Order> PutOrderAsync(int id, Order order)
-        {
-            
-            if(_context.Entry(order).State != EntityState.Modified)
-            {
-                var item = await _context.Items
-                                        .Where(itm => itm.ItemID == order.ItemID)
-                                        .FirstOrDefaultAsync();
-
-                //calculation
-                int excl, tax, incl;
-
-                excl = order.O_qty * item.I_Price;
-                tax = excl * item.I_Tax/100;
-                incl = excl + tax;
-
-                //asigning
-                order.O_ExclAmount = excl;
-                order.O_TaxAmount = tax;
-                order.O_InclAmount = incl;
-
-                _context.Entry(order).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-
-            _context.Entry(order).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return order;
-        }
-
-        //calculating order
-        /*public async Task<Order> MakeOrder(Order order) {
-
-            return order;
-        }*/
 
         private bool ItemExists(int id)
         {

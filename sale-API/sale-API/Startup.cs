@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -60,6 +61,17 @@ namespace sale_API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(appbuilder =>
+                {
+                    appbuilder.Run(async c =>
+                    {
+                        c.Response.StatusCode = 500;
+                        await c.Response.WriteAsync("Something went wrong try later");
+                    });
+                });
             }
 
             app.UseHttpsRedirection();

@@ -45,11 +45,6 @@ namespace sale_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            if (id != customer.CustomerID)
-            {
-                return BadRequest();
-            }
-            
             return Ok(await _customer.PutCustomerAsync(id, customer));
         }
 

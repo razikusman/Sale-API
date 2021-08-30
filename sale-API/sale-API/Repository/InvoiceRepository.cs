@@ -19,54 +19,104 @@ namespace sale_API.Repository
 
         public async Task<Invoice> DeleteInvoiceAsync(int id)
         {
-            var invoice = await _context.Invoices.FindAsync(id);
-            if (invoice == null)
+            try
             {
-                return null;
+                var invoice = await _context.Invoices.FindAsync(id);
+                if (invoice == null)
+                {
+                    return null;
+                }
+
+                _context.Invoices.Remove(invoice);
+                await _context.SaveChangesAsync();
+
+                return invoice;
             }
+            catch (Exception)
+            {
 
-            _context.Invoices.Remove(invoice);
-            await _context.SaveChangesAsync();
-
-            return invoice;
+                throw new Exception();
+            }
+            
         }
 
         public async Task<List<Invoice>> GetInvoicesAsync()
         {
-            var invoices = await _context.Invoices
+            try
+            {
+                var invoices = await _context.Invoices
                                                 .Include(inv => inv.Orders)
                                                 .ToListAsync();
-            return invoices;
+                return invoices;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Invoice> GetInvoicesByIDAsync(int id)
         {
-            var invoice = await _context.Invoices
+            try
+            {
+                var invoice = await _context.Invoices
                                                  .Include(inv => inv.Orders)
                                                  .Where(inv => inv.InvoiceID == id)
                                                  .FirstOrDefaultAsync();
-            if (invoice == null)
-            {
-                return null;
-            }
+                if (invoice == null)
+                {
+                    return null;
+                }
 
-            return invoice;
+                return invoice;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Invoice> PostInvoiceAsync(Invoice invoice)
         {
-            _context.Invoices.Add(invoice);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Invoices.Add(invoice);
+                await _context.SaveChangesAsync();
 
-            return invoice;
+                return invoice;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Invoice> PutInvoiceAsync(int id, Invoice invoice)
         {
-            _context.Entry(invoice).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (id != invoice.InvoiceID)
+                {
+                    throw new Exception();
+                }
 
-            return invoice;
+                _context.Entry(invoice).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return invoice;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
     }
 }

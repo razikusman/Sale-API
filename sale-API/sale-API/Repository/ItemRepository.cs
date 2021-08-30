@@ -19,52 +19,102 @@ namespace sale_API.Repository
 
         public async Task<Item> DeleteItemAsync(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
+            try
             {
-                return null;
+                var item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return null;
+                }
+
+                _context.Items.Remove(item);
+                await _context.SaveChangesAsync();
+
+                return item;
             }
+            catch (Exception)
+            {
 
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-
-            return item;
+                throw new Exception();
+            }
+            
         }
 
         public async Task<List<Item>> GetItemsAsync()
         {
-            var items = await _context.Items.ToListAsync();
-            return items;
+            try
+            {
+                var items = await _context.Items.ToListAsync();
+                return items;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Item> GetItemsByIDAsync(int id)
         {
-            var item = await _context.Items
+            try
+            {
+                var item = await _context.Items
                                              .Where(itm => itm.ItemID == id)
                                              .FirstOrDefaultAsync();
-            if (item == null)
-            {
-                return null;
-            }
+                if (item == null)
+                {
+                    return null;
+                }
 
-            return item;
+                return item;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Item> PostItemAsync(Item item)
         {
-            //create item
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
+            try
+            {
+                //create item
+                _context.Items.Add(item);
+                await _context.SaveChangesAsync();
 
-            return item;
+                return item;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         public async Task<Item> PutItemAsync(int id, Item item)
         {
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (id != item.ItemID)
+                {
+                    throw new Exception();
+                }
 
-            return item;
+                _context.Entry(item).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return item;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+            
         }
 
         private bool ItemExists(int id)
