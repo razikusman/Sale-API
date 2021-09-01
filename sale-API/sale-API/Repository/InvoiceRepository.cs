@@ -37,7 +37,7 @@ namespace sale_API.Repository
 
                 throw new Exception();
             }
-            
+
         }
 
         public async Task<List<Invoice>> GetInvoicesAsync()

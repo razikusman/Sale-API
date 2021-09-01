@@ -52,7 +52,6 @@ namespace sale_API.Repository
 
                 throw new Exception();
             }
-            
         }
 
         public async Task<Item> GetItemsByIDAsync(int id)
