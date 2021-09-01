@@ -108,26 +108,28 @@ namespace sale_API.Repository
                 }
 
                 //get the previous saved Item
-                /*var P_order = await _context.Ordders
+                var P_order = await _context.Ordders
                                     .Where(pord => pord.OrderID == id)
                                     .FirstOrDefaultAsync();
-                int qty = P_order.O_qty;
 
-                if (order.O_qty == qty)
+                if (order.O_qty != P_order.O_qty || order.ItemID != P_order.ItemID)
+                {
+                    //get the calculated orede
+                    order = await MakeOrder(order);
+
+                    await _context.SaveChangesAsync();
+
+                    return order;
+                }
+
+                else
                 {
                     _context.Entry(order).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
                     return order;
-                }*/
-
-                //get the calculated orede
-                order = await MakeOrder(order);
-
-                _context.Entry(order).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-
-                return order;
+                }
+                
             }
             catch (Exception)
             {
