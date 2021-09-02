@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using sale_API.Helper;
 using sale_API.Models;
 using sale_API.Repository.Interfaces;
 using System;
@@ -12,9 +13,10 @@ namespace sale_API.Repository
     {
         private readonly SalesDBContext _context;
 
-        public OrderRepository(SalesDBContext context)
+        public OrderRepository(SalesDBContext context )
         {
             _context = context;
+
         }
 
         public async Task<Order> DeleteOrderAsync(int id)
@@ -82,7 +84,9 @@ namespace sale_API.Repository
             try
             {
                 //get the calculated orede
-                order = await this.MakeOrder(order);
+                productUpdate pr = new productUpdate(_context);
+
+                order = await pr.Makeorder(order);
 
                 //create order
                 _context.Ordders.Add(order);
@@ -102,22 +106,25 @@ namespace sale_API.Repository
         {
             try
             {
-                if (id != order.OrderID)
+                if (OrderExists(id))
                 {
                     throw new Exception();
                 }
 
                 //get the previous saved Item
-                var P_order = await _context.Ordders
-                                    .Where(pord => pord.OrderID == id)
-                                    .FirstOrDefaultAsync();
+                var P_order = await GetOrdersByIDAsync(id);
 
                 if (order.O_qty != P_order.O_qty || order.ItemID != P_order.ItemID)
                 {
                     //get the calculated orede
-                    order = await MakeOrder(order);
+                    productUpdate pr = new productUpdate(_context);
+
+                    order = await pr.Makeorder(order);
+
 
                     await _context.SaveChangesAsync();
+
+
 
                     return order;
                 }
@@ -141,31 +148,11 @@ namespace sale_API.Repository
         }
 
         //calculating order
-        public async Task<Order> MakeOrder(Order order) 
+        
+
+        private bool OrderExists(int id)
         {
-
-            var item = await _context.Items
-                                    .Where(itm => itm.ItemID == order.ItemID)
-                                    .FirstOrDefaultAsync();
-
-            //calculation
-            int excl, tax, incl;
-
-            excl = order.O_qty * item.I_Price;
-            tax = excl * item.I_Tax / 100;
-            incl = excl + tax;
-
-            //asigning
-            order.O_ExclAmount = excl;
-            order.O_TaxAmount = tax;
-            order.O_InclAmount = incl;
-
-            return order;
-        }
-
-        private bool ItemExists(int id)
-        {
-            return _context.Items.Any(e => e.ItemID == id);
+            return _context.Ordders.Any(o => o.OrderID == id);
         }
     }
 }
