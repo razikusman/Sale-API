@@ -12,6 +12,7 @@ namespace sale_API.Repository
     public class OrderRepository : IOrderRepository
     {
         private readonly SalesDBContext _context;
+        productUpdate pr;
 
         public OrderRepository(SalesDBContext context )
         {
@@ -84,8 +85,7 @@ namespace sale_API.Repository
             try
             {
                 //get the calculated orede
-                productUpdate pr = new productUpdate(_context);
-
+                pr = new productUpdate(_context);
                 order = await pr.Makeorder(order);
 
                 //create order
@@ -106,7 +106,7 @@ namespace sale_API.Repository
         {
             try
             {
-                if (OrderExists(id))
+                if (!OrderExists(id))
                 {
                     throw new Exception();
                 }
@@ -117,21 +117,20 @@ namespace sale_API.Repository
                 if (order.O_qty != P_order.O_qty || order.ItemID != P_order.ItemID)
                 {
                     //get the calculated orede
-                    productUpdate pr = new productUpdate(_context);
-
+                    pr = new productUpdate(_context);
                     order = await pr.Makeorder(order);
 
-
                     await _context.SaveChangesAsync();
-
-
 
                     return order;
                 }
 
                 else
                 {
-                    _context.Entry(order).State = EntityState.Modified;
+                    pr = new productUpdate(_context);
+                    order = await pr.Makeorder(order , P_order);
+
+                   // _context.Entry(order).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
                     return order;
@@ -146,8 +145,6 @@ namespace sale_API.Repository
 
            
         }
-
-        //calculating order
         
 
         private bool OrderExists(int id)
