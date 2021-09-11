@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sale_API.Models;
 
 namespace sale_API.Migrations
 {
     [DbContext(typeof(SalesDBContext))]
-    partial class SalesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210911020354_tables_modified")]
+    partial class tables_modified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

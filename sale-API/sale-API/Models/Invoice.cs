@@ -16,7 +16,7 @@ namespace sale_API.Models
 
         //foriegn key Customer
         public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
+        /*public virtual Customer Customer { get; set; }*/
 
 
         //orders

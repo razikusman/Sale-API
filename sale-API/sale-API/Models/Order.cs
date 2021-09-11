@@ -17,6 +17,6 @@ namespace sale_API.Models
 
         //foreign key invoice
         public int InvoiceID { get; set; }
-        public virtual Invoice Invoice { get; set; }
+        //public virtual Invoice Invoice { get; set; }
     }
 }
