@@ -11,8 +11,8 @@ using sale_API.Repository.Interfaces;
 
 namespace sale_API.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
+    //[Authorize]
+    [Route("[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
