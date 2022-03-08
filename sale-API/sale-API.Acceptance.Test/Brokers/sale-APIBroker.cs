@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace sale_API.Acceptance.Test.Brokers
 {
-    public class sale_ApiBroker
+    public partial class sale_ApiBroker
     {
         private readonly WebApplicationFactory<Startup> webApplicationFactory;
-        public readonly HttpClient httpClient;
-        private readonly IRESTFulApiClient restFactoryClient;
+        private readonly HttpClient baseClient;
+        private readonly IRESTFulApiFactoryClient apiFactoryClient;
 
         public sale_ApiBroker()
         {
-            this.webApplicationFactory = new WebApplicationFactory<Startup>()
+            this.webApplicationFactory = new WebApplicationFactory<Startup>();
+            this.baseClient = this.webApplicationFactory.CreateClient();
+            this.apiFactoryClient = new RESTFulApiFactoryClient(this.baseClient);
         }
     }
 }

@@ -12,7 +12,7 @@ using sale_API.Repository.Interfaces;
 namespace sale_API.Controllers
 {
     //[Authorize]
-    [Route("[controller]")]
+    [Route("[api/controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
