@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "50TD8L6PN/G584d/IJPNuA1VaWN1kiKXD4YFsRqyTrGiSsIyIDDLbuVxD5CJNXiN93/2ckbKTFZVPxuW/VwRfw==",
+  "dgSpecHash": "259jzQHFUaAdnuL1g/sRfFXuGI0tq12KGV956S5u2wy73brdRQ3wGelaXNHdrM9T2MlkTvyuxm97vm9xXJkwEA==",
   "success": true,
   "projectFilePath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
-    "C:\\Users\\UsmanSPC\\.nuget\\packages\\fluentassertions\\6.1.0\\fluentassertions.6.1.0.nupkg.sha512",
+    "C:\\Users\\UsmanSPC\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
@@ -210,6 +210,7 @@
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\UsmanSPC\\.nuget\\packages\\tynamix.objectfiller\\1.5.7\\tynamix.objectfiller.1.5.7.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\xeption\\1.6.0\\xeption.1.6.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\xunit\\2.4.1\\xunit.2.4.1.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
