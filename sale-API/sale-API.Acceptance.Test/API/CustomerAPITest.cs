@@ -22,6 +22,7 @@ namespace sale_API.Acceptance.Test.API
         private Customer Createcustomer() =>
             new Filler<Customer>().Create();
 
+        //create - test
         [Fact]
         public async Task shouldPostAsync()
         {
@@ -39,13 +40,65 @@ namespace sale_API.Acceptance.Test.API
 
         }
 
-        //testdelete
+        //retrieve - test
+        [Fact]
+        public async Task shouldGetAsync()
+        {
+            //give
+            Customer randomcustomer = Createcustomer();
+            Customer inputcustomer = randomcustomer;
+            
+            int customerID = 5;
+            Customer expectedcustomer =
+                await this.sale_ApiBroker.GetCustomerAsync(customerID);
+
+            //when
+            Customer actualcustomer =
+                await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
+
+            //then
+            actualcustomer.Should().BeEquivalentTo(expectedcustomer);
+
+        }
+
+        //update - test
+        [Fact]
+        public async Task shouldPutAsync()
+        {
+            int customerID = 4;
+            
+            //give
+            Customer updatecustomer =
+                await this.sale_ApiBroker.GetCustomerAsync(customerID);
+
+            updatecustomer.C_Name = "updated " + updatecustomer.C_Name; //updated
+
+            Customer expectedsustomer = updatecustomer;
+
+            //when
+            Customer actualcustomer =
+                await this.sale_ApiBroker.PutCustomerAsync(customerID , updatecustomer);
+
+            //then
+            actualcustomer.Should().BeEquivalentTo(expectedsustomer);
+        }
+
+        //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
         {
-            //delete
             int customerID = 5;
-            await this.sale_ApiBroker.DeleteCustomerAsync(customerID);
+
+            //given
+            Customer actualcustomer = 
+                await this.sale_ApiBroker.GetCustomerAsync(customerID);
+
+            //when
+            Customer deletedcustomer = 
+                await this.sale_ApiBroker.DeleteCustomerAsync(customerID);
+
+            //then
+            actualcustomer.Should().BeEquivalentTo(deletedcustomer);
         }
 
     }
