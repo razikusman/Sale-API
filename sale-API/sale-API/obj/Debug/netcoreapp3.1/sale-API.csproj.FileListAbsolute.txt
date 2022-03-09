@@ -260,7 +260,6 @@ E:\spil\NewProduct API\Sale-API\sale-API\sale-API\bin\Debug\netcoreapp3.1\runtim
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.csproj.AssemblyReference.cache
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.GeneratedMSBuildEditorConfig.editorconfig
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.AssemblyInfoInputs.cache
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.AssemblyInfo.cs
@@ -275,3 +274,4 @@ E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-A
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.dll
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.pdb
 E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.genruntimeconfig.cache
+E:\spil\NewProduct API\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.csproj.AssemblyReference.cache

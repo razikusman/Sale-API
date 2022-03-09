@@ -12,7 +12,7 @@ using sale_API.Repository.Interfaces;
 namespace sale_API.Controllers
 {
     //[Authorize]
-    [Route("[api/controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -54,6 +54,7 @@ namespace sale_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
+           // customer.CustomerID = 2;
             return Ok(await _customer.PostCustomerAsync(customer));
         }
 
