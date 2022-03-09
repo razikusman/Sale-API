@@ -28,14 +28,24 @@ namespace sale_API.Acceptance.Test.API
             //give
             Customer randomcustomer = Createcustomer();
             Customer inputcustomer = randomcustomer;
-            Customer expecteedsustomer = inputcustomer;
+            Customer expectedsustomer = inputcustomer;
 
             //when
             Customer actualcustomer =
                 await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
 
             //then
-            actualcustomer.Should().BeEquivalentTo(expecteedsustomer);
+            actualcustomer.Should().BeEquivalentTo(expectedsustomer);
+
+        }
+
+        //testdelete
+        [Fact]
+        public async Task shouldDeleteAsync()
+        {
+            //delete
+            int customerID = 5;
+            await this.sale_ApiBroker.DeleteCustomerAsync(customerID);
         }
 
     }
