@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dFSILRWM1/JE3aThqpcUoUzBVevsT7DzysxEfae/xiqG1NGCVgv9yR4q8oRIrp6AEojwzKJ7xGCeizF+sZOuLQ==",
+  "dgSpecHash": "93lipkMnjYkAJuFCNThbVCxqg3h/JrnTUaEoW6q1FjGcqyttTpY3wxrOcW5yNUNVa271qWh3JgUDQJjn4DqJnw==",
   "success": true,
-  "projectFilePath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
+  "projectFilePath": "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\bricelam.entityframeworkcore.pluralizer\\1.0.0\\bricelam.entityframeworkcore.pluralizer.1.0.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

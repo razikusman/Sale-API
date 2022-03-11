@@ -8605,11 +8605,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
+      "projectUniqueName": "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
       "projectName": "sale-API",
-      "projectPath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
+      "projectPath": "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
       "packagesPath": "C:\\Users\\UsmanSPC\\.nuget\\packages\\",
-      "outputPath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\obj\\",
+      "outputPath": "E:\\Sale-API\\sale-API\\sale-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\spil\\dev express\\Components\\Offline Packages",

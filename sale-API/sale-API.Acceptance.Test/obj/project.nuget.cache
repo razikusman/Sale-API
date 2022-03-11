@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "259jzQHFUaAdnuL1g/sRfFXuGI0tq12KGV956S5u2wy73brdRQ3wGelaXNHdrM9T2MlkTvyuxm97vm9xXJkwEA==",
+  "dgSpecHash": "bFzsY6QYARlPUEsM9wDqSlxfTAv/tvsOGrvjsYJbSmmUXobbOLtmgcsdvaMmmaRWOd3qI4FpO2EAi9mRt7vQDA==",
   "success": true,
-  "projectFilePath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
+  "projectFilePath": "E:\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",

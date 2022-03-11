@@ -21,7 +21,7 @@ namespace sale_API.Acceptance.Test.API
 
         private Customer Createcustomer() =>
             new Filler<Customer>().Create();
-
+        
         //create - test
         [Fact]
         public async Task shouldPostAsync()

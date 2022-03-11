@@ -87,6 +87,13 @@ namespace sale_API
             {
                 endpoints.MapControllers();
             });
+            /*app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "api/{controller}",
+                    defaults: new { controller = "Home" });
+            });*/
         }
     }
 }

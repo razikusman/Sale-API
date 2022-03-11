@@ -11038,11 +11038,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
+      "projectUniqueName": "E:\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
       "projectName": "sale-API.Acceptance.Test",
-      "projectPath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
+      "projectPath": "E:\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
       "packagesPath": "C:\\Users\\UsmanSPC\\.nuget\\packages\\",
-      "outputPath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\obj\\",
+      "outputPath": "E:\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\spil\\dev express\\Components\\Offline Packages",
@@ -11067,8 +11067,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj": {
-              "projectPath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj"
+            "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj": {
+              "projectPath": "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj"
             }
           }
         }

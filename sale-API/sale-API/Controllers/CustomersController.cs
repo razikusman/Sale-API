@@ -12,6 +12,7 @@ using sale_API.Repository.Interfaces;
 namespace sale_API.Controllers
 {
     //[Authorize]
+    //[Route("api/[controller]")]
     [Route("[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
@@ -45,6 +46,7 @@ namespace sale_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
+            customer = await _customer.GetCustomersByIDAsync(id);
             return Ok(await _customer.PutCustomerAsync(id, customer));
         }
 
