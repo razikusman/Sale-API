@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "93lipkMnjYkAJuFCNThbVCxqg3h/JrnTUaEoW6q1FjGcqyttTpY3wxrOcW5yNUNVa271qWh3JgUDQJjn4DqJnw==",
+  "dgSpecHash": "x/lcDoh2aw/Vs+4/MUitQav1py0kaZSzYcP73HrdjkbVWUl72jc7Cg+opZqVKNduN2rkcAVCNY1kYJT4PTXPLQ==",
   "success": true,
-  "projectFilePath": "E:\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
+  "projectFilePath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API\\sale-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\bricelam.entityframeworkcore.pluralizer\\1.0.0\\bricelam.entityframeworkcore.pluralizer.1.0.0.nupkg.sha512",
+    "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512",

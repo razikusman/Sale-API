@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("sale-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "E:\\Sale-API\\sale-API\\sale-API", "sale-API.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("sale-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API", "sale-API.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("sale-API.Acceptance.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

@@ -994,3 +994,4 @@ E:\Sale-API\sale-API\sale-API.Acceptance.Test\obj\Debug\net5.0\sale-API.Acceptan
 E:\Sale-API\sale-API\sale-API.Acceptance.Test\obj\Debug\net5.0\ref\sale-API.Acceptance.Test.dll
 E:\Sale-API\sale-API\sale-API.Acceptance.Test\obj\Debug\net5.0\sale-API.Acceptance.Test.pdb
 E:\Sale-API\sale-API\sale-API.Acceptance.Test\obj\Debug\net5.0\sale-API.Acceptance.Test.genruntimeconfig.cache
+E:\spil\NewProduct API\Sale-API\sale-API\sale-API.Acceptance.Test\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

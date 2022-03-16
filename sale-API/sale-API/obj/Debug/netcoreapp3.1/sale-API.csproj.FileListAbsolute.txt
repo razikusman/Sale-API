@@ -414,3 +414,4 @@ E:\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.csproj.CopyComple
 E:\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.dll
 E:\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.pdb
 E:\Sale-API\sale-API\sale-API\obj\Debug\netcoreapp3.1\sale-API.genruntimeconfig.cache
+E:\spil\NewProduct API\Sale-API\sale-API\sale-API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

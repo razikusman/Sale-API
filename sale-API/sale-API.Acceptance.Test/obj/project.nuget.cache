@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "bFzsY6QYARlPUEsM9wDqSlxfTAv/tvsOGrvjsYJbSmmUXobbOLtmgcsdvaMmmaRWOd3qI4FpO2EAi9mRt7vQDA==",
+  "dgSpecHash": "WsY9q128uvMI65Ki1qOGrOzMaBJOsVzpWHwM7jb7ctdo3KWHGd+bfN2eoOIWy0feINVgd2+KRmrAwJQkdh9DBQ==",
   "success": true,
-  "projectFilePath": "E:\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
+  "projectFilePath": "E:\\spil\\NewProduct API\\Sale-API\\sale-API\\sale-API.Acceptance.Test\\sale-API.Acceptance.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\UsmanSPC\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
