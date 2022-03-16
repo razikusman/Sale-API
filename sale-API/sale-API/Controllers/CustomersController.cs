@@ -46,7 +46,6 @@ namespace sale_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            customer = await _customer.GetCustomersByIDAsync(id);
             return Ok(await _customer.PutCustomerAsync(id, customer));
         }
 

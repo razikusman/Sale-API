@@ -104,11 +104,11 @@ namespace sale_API.Repository
             try
             {
 
-                if (id != customer.CustomerID)
+                /*if (id != customer.CustomerID)
                 {
                     throw new Exception();
                 }
-
+*/
                 _context.Entry(customer).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 

@@ -41,14 +41,14 @@ namespace sale_API.Acceptance.Test.API
         }
 
         //retrieve - test
-        [Fact]
-        public async Task shouldGetAsync()
+       // [Fact]
+        /*public async Task shouldGetAsync()
         {
             //give
             Customer randomcustomer = Createcustomer();
             Customer inputcustomer = randomcustomer;
             
-            int customerID = 5;
+            int customerID = 1;
             Customer expectedcustomer =
                 await this.sale_ApiBroker.GetCustomerAsync(customerID);
 
@@ -59,7 +59,7 @@ namespace sale_API.Acceptance.Test.API
             //then
             actualcustomer.Should().BeEquivalentTo(expectedcustomer);
 
-        }
+        }*/
 
         //update - test
         [Fact]
@@ -73,21 +73,21 @@ namespace sale_API.Acceptance.Test.API
 
             updatecustomer.C_Name = "updated " + updatecustomer.C_Name; //updated
 
-            Customer expectedsustomer = updatecustomer;
+            Customer expectedcustomer = updatecustomer;
 
             //when
             Customer actualcustomer =
                 await this.sale_ApiBroker.PutCustomerAsync(customerID , updatecustomer);
 
             //then
-            actualcustomer.Should().BeEquivalentTo(expectedsustomer);
+            actualcustomer.Should().BeEquivalentTo(expectedcustomer);
         }
 
         //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
         {
-            int customerID = 5;
+            int customerID = 7;
 
             //given
             Customer actualcustomer = 
