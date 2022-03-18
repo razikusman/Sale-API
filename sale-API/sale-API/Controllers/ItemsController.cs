@@ -13,7 +13,7 @@ namespace sale_API.Controllers
 {
     //[Authorize]
     //[Route("api/[controller]")]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ItemsController : ControllerBase
     {

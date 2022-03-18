@@ -9,23 +9,27 @@ namespace sale_API.Acceptance.Test.Brokers
 {
     public partial class sale_ApiBroker
     {
-        private readonly string CustomerRelativeURL = "Customers";
+        private readonly string CustomerRelativeURL = "api/Customers";
 
         //create
         public async ValueTask<Customer> PostCustomerAsync(Customer customer) =>
-            await this.apiFactoryClient.PostContentAsync(CustomerRelativeURL, customer);
+            await this.apiFactoryClient.PostContentAsync($"{CustomerRelativeURL}/PostCustomer", customer);
 
         //retrive
         public async ValueTask<Customer> GetCustomerAsync(int customerID) =>
-            await this.apiFactoryClient.GetContentAsync<Customer>($"{CustomerRelativeURL}/{customerID}");
+            await this.apiFactoryClient.GetContentAsync<Customer>($"{CustomerRelativeURL}/GetCustomer/{customerID}");
+
+        //retrive - Post
+        public async ValueTask<Customer> GetCustomersAsync() =>
+            await this.apiFactoryClient.PostContentAsync<Customer>($"{CustomerRelativeURL}/GetCustomers" , null);
 
         //update
         public async ValueTask<Customer> PutCustomerAsync(int customerID , Customer customer) =>
-            await this.apiFactoryClient.PutContentAsync<Customer>($"{CustomerRelativeURL}/{customerID}", customer);
+            await this.apiFactoryClient.PutContentAsync<Customer>($"{CustomerRelativeURL}/PutCustomer/{customerID}", customer);
 
         //delete
         public async ValueTask<Customer> DeleteCustomerAsync(int customerID) =>
-            await this.apiFactoryClient.DeleteContentAsync<Customer>($"{CustomerRelativeURL}/{customerID}");
+            await this.apiFactoryClient.DeleteContentAsync<Customer>($"{CustomerRelativeURL}/DeleteCustomer/{customerID}");
 
     }
 }

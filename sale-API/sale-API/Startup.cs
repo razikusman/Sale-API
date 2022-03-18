@@ -100,18 +100,18 @@ namespace sale_API
 
             app.UseHttpsRedirection();
 
-            app.UseEndpoints(endpoints =>
+            /*app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-           /* app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "api/{controller}",
-                    defaults: new { controller = "Home" });
             });*/
+
+            app.UseEndpoints(endpoints =>
+             {
+                 endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "api/{controller}/{action}/{id}",
+                     defaults: new { controller = "Home" });
+             });
         }
     }
 }

@@ -41,25 +41,24 @@ namespace sale_API.Acceptance.Test.API
         }
 
         //retrieve - test
-       // [Fact]
-        /*public async Task shouldGetAsync()
+        [Fact]
+        public async Task shouldGetAsync()
         {
             //give
             Customer randomcustomer = Createcustomer();
             Customer inputcustomer = randomcustomer;
             
-            int customerID = 1;
             Customer expectedcustomer =
-                await this.sale_ApiBroker.GetCustomerAsync(customerID);
+                await this.sale_ApiBroker.GetCustomersAsync();
 
             //when
-            Customer actualcustomer =
-                await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
+            /* Customer actualcustomer =
+                 await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);*/
 
             //then
-            actualcustomer.Should().BeEquivalentTo(expectedcustomer);
+            //expectedcustomer.Should().;
 
-        }*/
+        }
 
         //update - test
         [Fact]

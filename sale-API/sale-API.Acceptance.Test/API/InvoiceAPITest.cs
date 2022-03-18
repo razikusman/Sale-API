@@ -29,7 +29,7 @@ namespace sale_API.Acceptance.Test.API
             //give
             Invoice randominvoice = Createinvoice();
             Invoice inputinvoice = randominvoice;
-            inputinvoice.InvoiceID = 1;
+            inputinvoice.CustomerID = 1;
 
             Invoice expectedinvoice = inputinvoice;
 
@@ -70,7 +70,7 @@ namespace sale_API.Acceptance.Test.API
             //give
             Invoice randominvoice = Createinvoice();
             Invoice inputinvoice = randominvoice;
-            inputinvoice.InvoiceID = 1;
+            inputinvoice.CustomerID = 1;
 
             await this.sale_ApiBroker.PostInvoiceAsync(inputinvoice);
 

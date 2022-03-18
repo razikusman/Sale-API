@@ -13,7 +13,7 @@ namespace sale_API.Controllers
 {
     //[Authorize]
     //[Route("api/[controller]")]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -24,9 +24,16 @@ namespace sale_API.Controllers
             _customer = customer;
         }
 
+        //get all post
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        {
+            return Ok(await _customer.GetCustomersAsync());
+        }
+
         // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomersAll()
         {
             return Ok(await _customer.GetCustomersAsync());
         }
