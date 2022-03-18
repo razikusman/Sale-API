@@ -33,6 +33,7 @@ namespace sale_API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            //modelBuilder.Entity<Customer>().Property(u => u.CustomerID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -8,7 +8,7 @@ namespace sale_API.Acceptance.Test.Models
 {
     public class Customer
     {
-        //public int CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public String C_Name { get; set; }
         public String C_Address1 { get; set; }
         public String C_Address2 { get; set; }

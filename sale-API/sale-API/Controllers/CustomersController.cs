@@ -46,6 +46,11 @@ namespace sale_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
+            /*// modelBuilder = new ModelBuilder(); 
+            Customer customer1 = await _customer.GetCustomersByIDAsync(id);
+
+            EntityState.Modified.CompareTo(customer1);*/
+
             return Ok(await _customer.PutCustomerAsync(id, customer));
         }
 

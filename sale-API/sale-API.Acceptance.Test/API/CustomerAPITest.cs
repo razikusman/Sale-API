@@ -65,40 +65,42 @@ namespace sale_API.Acceptance.Test.API
         [Fact]
         public async Task shouldPutAsync()
         {
-            int customerID = 4;
-            
             //give
-            Customer updatecustomer =
-                await this.sale_ApiBroker.GetCustomerAsync(customerID);
+            Customer randomcustomer = Createcustomer();
+            Customer inputcustomer = randomcustomer;
+            
+            await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
 
-            updatecustomer.C_Name = "updated " + updatecustomer.C_Name; //updated
+            Customer updatecustomer= await this.sale_ApiBroker.GetCustomerAsync( inputcustomer.CustomerID);
 
-            Customer expectedcustomer = updatecustomer;
+            updatecustomer.C_Name = "updated " + updatecustomer.C_Name;
+
 
             //when
-            Customer actualcustomer =
-                await this.sale_ApiBroker.PutCustomerAsync(customerID , updatecustomer);
+            Customer expectedsustomer =
+                await this.sale_ApiBroker.PutCustomerAsync(updatecustomer.CustomerID, updatecustomer);
 
             //then
-            actualcustomer.Should().BeEquivalentTo(expectedcustomer);
+            expectedsustomer.Should().BeEquivalentTo(updatecustomer);
         }
 
         //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
         {
-            int customerID = 7;
-
             //given
-            Customer actualcustomer = 
-                await this.sale_ApiBroker.GetCustomerAsync(customerID);
-
+            //give
+            Customer randomcustomer = Createcustomer();
+            Customer inputcustomer = randomcustomer;
+            await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
+            
+            Customer expectedsustomer = inputcustomer;
             //when
             Customer deletedcustomer = 
-                await this.sale_ApiBroker.DeleteCustomerAsync(customerID);
+                await this.sale_ApiBroker.DeleteCustomerAsync(inputcustomer.CustomerID);
 
             //then
-            actualcustomer.Should().BeEquivalentTo(deletedcustomer);
+            expectedsustomer.Should().BeEquivalentTo(deletedcustomer);
         }
 
     }
