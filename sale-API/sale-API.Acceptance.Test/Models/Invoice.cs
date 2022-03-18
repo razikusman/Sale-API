@@ -7,7 +7,7 @@ namespace sale_API.Acceptance.Test.Models
 {
     public class Invoice
     {
-       // public int InvoiceID { get; set; }
+        public int InvoiceID { get; set; }
         public int I_Num { get; set; }
         public DateTime I_Date { get; set; }
         public int I_RefNum { get; set; }

@@ -29,7 +29,7 @@ namespace sale_API.Acceptance.Test.API
             //give
             Invoice randominvoice = Createinvoice();
             Invoice inputinvoice = randominvoice;
-            inputinvoice.CustomerID = 1;
+            inputinvoice.InvoiceID = 1;
 
             Invoice expectedinvoice = inputinvoice;
 
@@ -67,41 +67,44 @@ namespace sale_API.Acceptance.Test.API
         [Fact]
         public async Task shouldPutAsync()
         {
-            int invoiceID = 4;
-            
             //give
-            Invoice updateinvoice =
-                await this.sale_ApiBroker.GetInvoiceAsync(invoiceID);
+            Invoice randominvoice = Createinvoice();
+            Invoice inputinvoice = randominvoice;
+            inputinvoice.InvoiceID = 1;
 
-            updateinvoice.I_Note = "updated " + updateinvoice.I_Note; //updated
-            updateinvoice.CustomerID = 1;
+            await this.sale_ApiBroker.PostInvoiceAsync(inputinvoice);
 
-            Invoice expectedsustomer = updateinvoice;
+            Invoice updateinvoice = await this.sale_ApiBroker.GetInvoiceAsync(inputinvoice.InvoiceID);
+
+            updateinvoice.I_Note = "updated " + updateinvoice.I_Note;
+
 
             //when
-            Invoice actualinvoice =
-                await this.sale_ApiBroker.PutInvoiceAsync(invoiceID , updateinvoice);
+            Invoice expectedinvoice =
+                await this.sale_ApiBroker.PutInvoiceAsync(updateinvoice.InvoiceID, updateinvoice);
 
             //then
-            actualinvoice.Should().BeEquivalentTo(expectedsustomer);
+            expectedinvoice.Should().BeEquivalentTo(updateinvoice);
         }
 
         //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
         {
-            int invoiceID = 5;
-
             //given
-            Invoice actualinvoice = 
-                await this.sale_ApiBroker.GetInvoiceAsync(invoiceID);
+            Invoice randominvoice = Createinvoice();
+            Invoice inputinvoice = randominvoice;
+            inputinvoice.CustomerID = 1;
 
+            await this.sale_ApiBroker.PostInvoiceAsync(inputinvoice);
+
+            Invoice expectedsustomer = inputinvoice;
             //when
-            Invoice deletedinvoice = 
-                await this.sale_ApiBroker.DeleteInvoiceAsync(invoiceID);
+            Invoice deletedinvoice =
+                await this.sale_ApiBroker.DeleteInvoiceAsync(inputinvoice.InvoiceID);
 
             //then
-            actualinvoice.Should().BeEquivalentTo(deletedinvoice);
+            expectedsustomer.Should().BeEquivalentTo(deletedinvoice);
         }
 
     }
