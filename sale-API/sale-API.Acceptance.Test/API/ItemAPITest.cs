@@ -30,7 +30,7 @@ namespace sale_API.Acceptance.Test.API
             Item randomitem = Createitem();
             Item inputitem = randomitem;
             Item expectedsustomer = inputitem;
-
+            
             //when
             Item actualitem =
                 await this.sale_ApiBroker.PostItemAsync(inputitem);
@@ -65,40 +65,41 @@ namespace sale_API.Acceptance.Test.API
         [Fact]
         public async Task shouldPutAsync()
         {
-            int itemID = 3;
-            
             //give
-            Item updateitem =
-                await this.sale_ApiBroker.GetItemAsync(itemID);
+            Item randomitem = Createitem();
+            Item inputitem = randomitem;
 
-            updateitem.I_Note = "updated " + updateitem.I_Note; //updated
+            await this.sale_ApiBroker.PostItemAsync(inputitem);
 
-            Item expecteditem = updateitem;
+            Item updateitem = await this.sale_ApiBroker.GetItemAsync(inputitem.ItemID);
+
+            updateitem.I_Note = "updated " + updateitem.I_Note;
+
 
             //when
-            Item actualitem =
-                await this.sale_ApiBroker.PutItemAsync(itemID , updateitem);
+            Item expectedItem =
+                await this.sale_ApiBroker.PutItemAsync(updateitem.ItemID, updateitem);
 
             //then
-            actualitem.Should().BeEquivalentTo(expecteditem);
+            expectedItem.Should().BeEquivalentTo(updateitem);
         }
 
         //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
         {
-            int itemID =3;
+            //give
+            Item randomitem = Createitem();
+            Item inputitem = randomitem;
+            await this.sale_ApiBroker.PostItemAsync(inputitem);
 
-            //given
-            Item actualitem = 
-                await this.sale_ApiBroker.GetItemAsync(itemID);
-
+            Item expecteditem = inputitem;
             //when
-            Item deleteditem = 
-                await this.sale_ApiBroker.DeleteItemAsync(itemID);
+            Item deleteditem =
+                await this.sale_ApiBroker.DeleteItemAsync(inputitem.ItemID);
 
             //then
-            actualitem.Should().BeEquivalentTo(deleteditem);
+            expecteditem.Should().BeEquivalentTo(deleteditem);
         }
 
     }

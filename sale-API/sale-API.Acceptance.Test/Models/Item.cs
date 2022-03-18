@@ -7,7 +7,7 @@ namespace sale_API.Acceptance.Test.Models
 {
     public class Item
     {
-       // public int ItemID { get; set; }
+        public int ItemID { get; set; }
         public String I_Code { get; set; }
         public String I_Description { get; set; }
         public String I_Note { get; set; }
