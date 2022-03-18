@@ -77,11 +77,11 @@ namespace sale_API.Acceptance.Test.API
 
 
             //when
-            Customer expectedsustomer =
+            Customer expectedcustomer =
                 await this.sale_ApiBroker.PutCustomerAsync(updatecustomer.CustomerID, updatecustomer);
 
             //then
-            expectedsustomer.Should().BeEquivalentTo(updatecustomer);
+            expectedcustomer.Should().BeEquivalentTo(updatecustomer);
         }
 
         //delete - test
@@ -89,7 +89,6 @@ namespace sale_API.Acceptance.Test.API
         public async Task shouldDeleteAsync()
         {
             //given
-            //give
             Customer randomcustomer = Createcustomer();
             Customer inputcustomer = randomcustomer;
             await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);
