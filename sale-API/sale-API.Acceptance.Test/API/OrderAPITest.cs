@@ -39,6 +39,14 @@ namespace sale_API.Acceptance.Test.API
             Order actualorder =
                 await this.sale_ApiBroker.PostOrderAsync(inputorder);
 
+            Item inputOrderItem = await this.sale_ApiBroker.GetItemAsync(inputorder.ItemID);
+            expectedorder.O_ExclAmount = inputOrderItem.I_Price * inputorder.O_qty;
+            expectedorder.O_TaxAmount = expectedorder.O_ExclAmount * inputOrderItem.I_Tax / 100;
+            expectedorder.O_InclAmount = expectedorder.O_TaxAmount + expectedorder.O_ExclAmount ;
+
+            /*Invoice inputOrderInvoice = await this.sale_ApiBroker.GetInvoiceAsync(inputorder.InvoiceID);
+            expectedorder.Invoice = inputOrderInvoice;*/
+
             //then
             actualorder.Should().BeEquivalentTo(expectedorder);
 
@@ -69,40 +77,56 @@ namespace sale_API.Acceptance.Test.API
         [Fact]
         public async Task shouldPutAsync()
         {
-            int orderID = 4;
-            
             //give
-            Order updateorder =
-                await this.sale_ApiBroker.GetOrderAsync(orderID);
+            Order randomorder = Createorder();
+            Order inputorder = randomorder;
+            inputorder.ItemID = 1;
+            inputorder.InvoiceID = 1;
 
-            updateorder.O_qty = 000 + updateorder.O_qty; //updated
 
-            Order expectedsustomer = updateorder;
+            await this.sale_ApiBroker.PostOrderAsync(inputorder);
+
+            Order updateorder = await this.sale_ApiBroker.GetOrderAsync(inputorder.OrderID);
+
+            updateorder.O_qty  = 1 + updateorder.O_qty;
+
 
             //when
-            Order actualorder =
-                await this.sale_ApiBroker.PutOrderAsync(orderID , updateorder);
+            Order expectedorder =
+                await this.sale_ApiBroker.PutOrderAsync(updateorder.OrderID, updateorder);
+
+            Item inputOrderItem = await this.sale_ApiBroker.GetItemAsync(inputorder.ItemID);
+            expectedorder.O_ExclAmount = inputOrderItem.I_Price * inputorder.O_qty;
+            expectedorder.O_TaxAmount = expectedorder.O_ExclAmount * inputOrderItem.I_Tax / 100;
+            expectedorder.O_InclAmount = expectedorder.O_TaxAmount + expectedorder.O_ExclAmount;
 
             //then
-            actualorder.Should().BeEquivalentTo(expectedsustomer);
+            expectedorder.Should().BeEquivalentTo(updateorder);
         }
 
         //delete - test
         [Fact]
         public async Task shouldDeleteAsync()
-        {
-            int orderID = 5;
+        {//give
+            Order randomorder = Createorder();
+            Order inputorder = randomorder;
+            inputorder.ItemID = 1;
+            inputorder.InvoiceID = 1;
 
-            //given
-            Order actualorder = 
-                await this.sale_ApiBroker.GetOrderAsync(orderID);
+            await this.sale_ApiBroker.PostOrderAsync(inputorder);
 
+            Order expectedorder = inputorder;
             //when
-            Order deletedorder = 
-                await this.sale_ApiBroker.DeleteOrderAsync(orderID);
+            Order deletedorder =
+                await this.sale_ApiBroker.DeleteOrderAsync(inputorder.OrderID);
+
+            Item inputOrderItem = await this.sale_ApiBroker.GetItemAsync(inputorder.ItemID);
+            expectedorder.O_ExclAmount = inputOrderItem.I_Price * inputorder.O_qty;
+            expectedorder.O_TaxAmount = expectedorder.O_ExclAmount * inputOrderItem.I_Tax / 100;
+            expectedorder.O_InclAmount = expectedorder.O_TaxAmount + expectedorder.O_ExclAmount;
 
             //then
-            actualorder.Should().BeEquivalentTo(deletedorder);
+            expectedorder.Should().BeEquivalentTo(deletedorder);
         }
 
     }

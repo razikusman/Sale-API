@@ -7,7 +7,7 @@ namespace sale_API.Acceptance.Test.Models
 {
     public class Order
     {
-       // public int OrderID { get; set; }
+        public int OrderID { get; set; }
         public int ItemID { get; set; }
         public int O_qty { get; set; }
         public int O_ExclAmount { get; set; }
