@@ -20,8 +20,8 @@ namespace sale_API.Acceptance.Test.Brokers
             await this.apiFactoryClient.GetContentAsync<Customer>($"{CustomerRelativeURL}/GetCustomer/{customerID}");
 
         //retrive - Post
-        public async ValueTask<Customer> GetCustomersAsync() =>
-            await this.apiFactoryClient.PostContentAsync<Customer>($"{CustomerRelativeURL}/GetCustomers" , null);
+        public async ValueTask<List<Customer>> GetCustomersAsync() =>
+            await this.apiFactoryClient.PostContentAsync<List<Customer>>($"{CustomerRelativeURL}/GetCustomers" , null);
 
         //update
         public async ValueTask<Customer> PutCustomerAsync(int customerID , Customer customer) =>

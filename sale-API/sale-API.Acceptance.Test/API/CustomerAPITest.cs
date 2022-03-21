@@ -45,18 +45,12 @@ namespace sale_API.Acceptance.Test.API
         public async Task shouldGetAsync()
         {
             //give
-            Customer randomcustomer = Createcustomer();
-            Customer inputcustomer = randomcustomer;
             
-            Customer expectedcustomer =
+            List<Customer> expectedcustomer =
                 await this.sale_ApiBroker.GetCustomersAsync();
 
-            //when
-            /* Customer actualcustomer =
-                 await this.sale_ApiBroker.PostCustomerAsync(inputcustomer);*/
-
             //then
-            //expectedcustomer.Should().;
+            expectedcustomer.Count().Should().BeGreaterThan(0);
 
         }
 
